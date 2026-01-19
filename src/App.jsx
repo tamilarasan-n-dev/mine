@@ -5,17 +5,25 @@ import { StarsCanvas } from "./components/main/star-background";
 import { FloatingDockDemo } from "./components/sub/floatingDemo";
 import { About } from "./components/main/about";
 import { motion } from "framer-motion";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { slideInFromLeft } from "@/lib/motion";
 import Project from "./components/main/project";
-// import { FloatingDockDemo } from "../dist/floatingDemo.es.js";
+import RustBlog0x1 from "./components/sub/RustBlog0x1";
+import "highlight.js/styles/github-dark.css";
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const isBlog = location.pathname.startsWith("/blogs/");
+
   return (
     <>
-      <Router>
-        <StarsCanvas />
-        <main className="h-full w-full">
+      {!isBlog && <StarsCanvas />}
+      <main className={isBlog ? "h-screen w-full overflow-y-auto overflow-x-hidden" : "h-full w-full"}>
+        {isBlog ? (
+          <Routes>
+            <Route path="/blogs/0x1" element={<RustBlog0x1 />} />
+          </Routes>
+        ) : (
           <div className="flex flex-col gap-20">
             <div>
               <motion.div variants={slideInFromLeft(1)} className="floating-dock-container">
@@ -26,18 +34,19 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/projects" element={<Project />} />
               </Routes>
-              {/* {currenctComponetn === "home" ? (
-              <Hero />
-            ) : currenctComponetn === "about" ? (
-              <About />
-            ) : (
-              <>"no components selected"</>
-            )} */}
             </div>
           </div>
-        </main>
-      </Router>
+        )}
+      </main>
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
