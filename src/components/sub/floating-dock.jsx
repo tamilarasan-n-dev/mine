@@ -40,7 +40,7 @@ export const FloatingDock = ({
 
 const FloatingDockMobile = ({
   items,
-  
+
 
   className,
 }) => {
@@ -57,7 +57,7 @@ const FloatingDockMobile = ({
               <motion.div
                 style={{
                   cursor: "pointer",
-                }}  
+                }}
                 key={item.title}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
@@ -75,6 +75,7 @@ const FloatingDockMobile = ({
               >
                 <a
                   href={item.href}
+                  onClick={item.onClick}
                   key={item.title}
                   className="h-10 w-10 rounded-full bg-gray-50  bg-transparent flex items-center justify-center"
                   style={{
@@ -100,7 +101,7 @@ const FloatingDockMobile = ({
 
 const FloatingDockDesktop = ({
   items,
-  
+
 
   className,
 }) => {
@@ -120,7 +121,7 @@ const FloatingDockDesktop = ({
       {items.map((item) => (
         <IconContainer
           mouseX={mouseX}
-          
+
           key={item.title}
           {...item}
         />
@@ -132,10 +133,11 @@ const FloatingDockDesktop = ({
 function IconContainer({
   mouseX,
   title,
-  
+
 
   icon,
   href,
+  onClick,
 }) {
   let ref = useRef(null);
 
@@ -182,38 +184,38 @@ function IconContainer({
 
 
   return (
-     (<a href={href}>
-    <motion.div
-
-      ref={ref}
-      style={{ width, height, cursor: "pointer" }}
-      onMouseEnter={() => {
-        setHovered(true);
-      }}
-      onMouseLeave={() => {
-        setHovered(false);
-      }}
-      className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
-    >
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: "-50%" }}
-            animate={{ opacity: 1, y: 0, x: "-50%" }}
-            exit={{ opacity: 0, y: 2, x: "-50%" }}
-            className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
-          >
-            {title}
-          </motion.div>
-        )}
-      </AnimatePresence>
+    (<a href={href} onClick={onClick}>
       <motion.div
-        style={{ width: widthIcon, height: heightIcon }}
-        className="flex items-center justify-center"
+
+        ref={ref}
+        style={{ width, height, cursor: "pointer" }}
+        onMouseEnter={() => {
+          setHovered(true);
+        }}
+        onMouseLeave={() => {
+          setHovered(false);
+        }}
+        className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
       >
-        {icon}
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, x: "-50%" }}
+              animate={{ opacity: 1, y: 0, x: "-50%" }}
+              exit={{ opacity: 0, y: 2, x: "-50%" }}
+              className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+            >
+              {title}
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <motion.div
+          style={{ width: widthIcon, height: heightIcon }}
+          className="flex items-center justify-center"
+        >
+          {icon}
+        </motion.div>
       </motion.div>
-    </motion.div>
     </a>)
   );
 }

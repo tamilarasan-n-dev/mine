@@ -9,11 +9,16 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { slideInFromLeft } from "@/lib/motion";
 import Project from "./components/main/project";
 import RustBlog0x1 from "./components/sub/RustBlog0x1";
+import Blogs from "./components/main/Blogs";
 import "highlight.js/styles/github-dark.css";
+import usePageObserver from "./hooks/usePageObserver";
 
 function AppContent() {
   const location = useLocation();
-  const isBlog = location.pathname.startsWith("/blogs/");
+  const isBlog = location.pathname.startsWith("/blogs");
+
+  // Track page visits on every route change and refresh
+  usePageObserver();
 
   return (
     <>
@@ -21,6 +26,7 @@ function AppContent() {
       <main className={isBlog ? "h-screen w-full overflow-y-auto overflow-x-hidden" : "h-full w-full"}>
         {isBlog ? (
           <Routes>
+            <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/0x1" element={<RustBlog0x1 />} />
           </Routes>
         ) : (
