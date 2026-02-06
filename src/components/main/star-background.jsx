@@ -1,7 +1,7 @@
 "use client";
 
 import { Points, PointMaterial } from "@react-three/drei";
-import { Canvas,  useFrame } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as random from "maath/random";
 import { useState, useRef, Suspense } from "react";
 // import  { Points as PointsType } from "three";
@@ -9,7 +9,7 @@ import { useState, useRef, Suspense } from "react";
 export const StarBackground = (props) => {
   const ref = useRef(null);
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(2000), { radius: 1.2 })
+    random.inSphere(new Float32Array(3000), { radius: 1.2 })
   );
 
   useFrame((_state, delta) => {

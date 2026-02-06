@@ -77,7 +77,9 @@ export const HeroContent = () => {
       window.scrollTo(0, 0);
       requestFullScreen();
     } else {
-      document.exitFullscreen();
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
     }
   }, [isOpenSkills]);
 
@@ -180,7 +182,7 @@ export const HeroContent = () => {
           <motion.p
             className="mt-0  text-white font-medium lg:w-4/5 welcome-msg"
             variants={slideInFromLeft(1)}
-            // exit="exit"
+          // exit="exit"
           >
             Welcome to my portfolio! I hope you enjoy your visit. I specialize
             in Back-End development with Node.js and Front-End development with
@@ -202,18 +204,18 @@ export const HeroContent = () => {
             solutions that make a difference. Thank you for visiting my
             portfolio! I hope you like my work.{" "}
             <span className="text-yellow-500">Happy coding!</span> 🧑🏻‍💻
-            <div className="flex gap-5 mt-5 border-white border-collapse rounded">
-              <a href="https://github.com/tamil-0714" target="_blank">
-                <FaGithub className="h-7 w-7" />
-              </a>
-              <a href="https://www.linkedin.com/in/tamil0714/" target="_blank">
-                <FaLinkedin className="h-7 w-7" />
-              </a>
-              <a href="https://x.com/Tamil_0714/" target="_blank">
-                <FaX className="h-6 w-6" />
-              </a>
-            </div>
           </motion.p>
+          <div className="flex gap-5 mt-5 border-white border-collapse rounded">
+            <a href="https://github.com/tamil-0714" target="_blank">
+              <FaGithub className="h-7 w-7" />
+            </a>
+            <a href="https://www.linkedin.com/in/tamil0714/" target="_blank">
+              <FaLinkedin className="h-7 w-7" />
+            </a>
+            <a href="https://x.com/Tamil_0714/" target="_blank">
+              <FaX className="h-6 w-6" />
+            </a>
+          </div>
           <motion.div
             variants={slideInFromTop}
             // exit="exit"
@@ -230,7 +232,7 @@ export const HeroContent = () => {
               }}
               variants={slideInFromLeft(0.5)}
               className="resume-works-btn"
-              // exit="exit"
+            // exit="exit"
             >
               <Magnet magnetStrength={7}>
                 <motion.a
