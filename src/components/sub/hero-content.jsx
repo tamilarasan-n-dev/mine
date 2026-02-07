@@ -83,7 +83,9 @@ export const HeroContent = () => {
         document.documentElement.requestFullscreen().catch(() => {});
       }
     } else {
-      document.exitFullscreen();
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
     }
   }, [isOpenSkills]);
 
@@ -145,64 +147,6 @@ export const HeroContent = () => {
                   text="Hey there! 👋"
                 />
               </div>
-<<<<<<< Updated upstream
-            </h2>
-          </motion.div>
-          <motion.p
-            className="mt-0  text-white font-medium lg:w-4/5 welcome-msg"
-            variants={slideInFromLeft(1)}
-            // exit="exit"
-          >
-            Welcome to my portfolio! I hope you enjoy your visit. I specialize
-            in Back-End development with Node.js and Front-End development with
-            React.js. I have worked on various projects, including a{" "}
-            <span
-              className="text-indigo-600 cursor-pointer"
-              onClick={() =>
-                window.open(
-                  "https://github.com/tamil-0714/college-project",
-                  "_blank"
-                )
-              }
-            >
-              SaaS LMS Platform with Code Execution and Collaboration Tools
-            </span>{" "}
-            , React-based Web App.
-            <br />
-            <br />I am passionate about learning new technologies and building
-            solutions that make a difference. Thank you for visiting my
-            portfolio! I hope you like my work.{" "}
-            <span className="text-yellow-500">Happy coding!</span> 🧑🏻‍💻
-            <div className="flex gap-5 mt-5 border-white border-collapse rounded">
-              <a href="https://github.com/tamil-0714" target="_blank">
-                <FaGithub className="h-7 w-7" />
-              </a>
-              <a href="https://www.linkedin.com/in/tamil0714/" target="_blank">
-                <FaLinkedin className="h-7 w-7" />
-              </a>
-              <a href="https://x.com/Tamil_0714/" target="_blank">
-                <FaX className="h-6 w-6" />
-              </a>
-            </div>
-          </motion.p>
-          <motion.div
-            variants={slideInFromTop}
-            // exit="exit"
-            className="btn-hero-lgap"
-            style={{
-              display: "flex",
-              // outline: "1px solid red",
-              gap: "20px",
-            }}
-          >
-            <motion.div
-              style={{
-                width: "200px",
-              }}
-              variants={slideInFromLeft(0.5)}
-              className="resume-works-btn"
-              // exit="exit"
-=======
             </motion.div>
 
             {/* Name */}
@@ -230,7 +174,6 @@ export const HeroContent = () => {
             <motion.p
               variants={itemVariants}
               className="max-w-xl text-sm sm:text-base text-white/60 leading-relaxed mb-8"
->>>>>>> Stashed changes
             >
               I specialize in Back-End with{" "}
               <span className="text-purple-400">Node.js</span> and Front-End

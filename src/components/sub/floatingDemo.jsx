@@ -6,10 +6,11 @@ import {
   IconHome,
 
   IconUser,
-  IconMail
+  IconNotebook
 } from "@tabler/icons-react";
 import { IconBrandLinkedin } from "@tabler/icons-react/dist/esm/tabler-icons-react";
 import { FaProjectDiagram } from "react-icons/fa";
+import observerAPI from "../../api/observer.api.js";
 // import Image from "next/image";
 
 export function FloatingDockDemo() {
@@ -37,35 +38,37 @@ export function FloatingDockDemo() {
       href: "/projects",
     },
     {
-      title: "Reach me",
+      title: "Blogs",
       icon: (
-        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <IconNotebook className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "mailto:tamil.tj.1967@gmail.com",
+      href: "/blogs",
     },
     {
       title: "LinkedIn",
       icon: (
         <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-        
+
       ),
       href: "https://www.linkedin.com/in/tamil0714/",
+      onClick: () => observerAPI.create("https://www.linkedin.com/in/tamil0714/"),
     },
 
-    
+
     {
       title: "GitHub",
       icon: (
         <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "http://www.github.com/tamil-0714",
-    }, 
+      onClick: () => observerAPI.create("http://www.github.com/tamil-0714"),
+    },
   ];
   return (
     (<div className="flex items-center justify-center mt-20 w-full dock-nav-bar">
       <FloatingDock
-      
-      
+
+
         items={links} />
     </div>)
   );
